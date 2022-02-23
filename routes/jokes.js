@@ -27,7 +27,7 @@ let jokes = [
  * Create a GET /joke route, that returns all jokes.
  */
 router.get("/", (req, res, next) => {
-  // …
+  res.json(jokes);
 });
 
 /**
