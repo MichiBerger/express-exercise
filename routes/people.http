@@ -1,0 +1,25 @@
+GET http://localhost:3333/people
+
+### 
+GET http://localhost:3333/people/6217ccde5b8cf55465d5e239
+
+### 
+POST http://localhost:3333/people
+Content-Type: application/json
+
+{
+  "name": "TestName2",
+  "email": "john@test.de"
+}
+
+### 
+PATCH http://localhost:3333/people/6217caf710d30e3aa817a935
+Content-Type: application/json
+
+{
+  "name": "Mchi",
+  "email": "dishsj@dij.de" 
+}
+
+###
+DELETE http://localhost:3333/people/6217caf710d30e3aa817a935

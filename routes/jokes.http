@@ -1,0 +1,27 @@
+GET http://localhost:3333/jokes
+###
+
+GET http://localhost:3333/jokes/62179fdbad6d8b58af4a9f6c
+###
+
+POST http://localhost:3333/jokes
+Content-Type: application/json
+
+{
+  "text" : "What a funny Joke2",
+  "author": "Michi Berger"
+}
+
+###
+PATCH http://localhost:3333/jokes/62179dc887e4c09891c36cc4
+Content-Type: application/json
+
+{
+  "text": "this joke is new",
+  "author": "anything"
+}
+
+###
+DELETE http://localhost:3333/jokes/62179dc787e4c09891c36cc2
+
+###

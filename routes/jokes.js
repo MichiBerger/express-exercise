@@ -9,79 +9,68 @@ const router = express.Router();
  * Create a GET /joke route, that returns all jokes.
  */
 router.get('/', async (req, res, next) => {
-  const jokes = await Joke.find()
-  res.json(jokes);
+  try {
+    const jokes = await Joke.find().populate('author', 'name email');
+    res.json(jokes);
+  } catch (error) {
+    next(error);
+  }
 });
 
 /**
- * Exercise 2
  * Create a GET /joke/:id route, that returns the joke for the given id.
  */
 
-router.get('/:id', (req, res, next) => {
-  // const { id } = req.params;
-  // const joke = jokes.find(joke => joke.id === id);
-
-  // if (joke) {
-  //   res.json(joke.joke);
-  // } else {
-  //   next();
-  // }
+router.get('/:id', async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const joke = await Joke.findById(id);
+    res.json(joke);
+  } catch (error) {
+    next(error);
+  }
 });
 
 /**
- * Exercise 3
  * Create a POST /joke route, that adds a new joke to the array.
  */
-router.post('/', (req, res, next) => {
-  // const newJoke = req.body;
-  // newJoke.id = nanoid();
-  // jokes.push(newJoke);
-
-  // res.json({
-  //   insertedAt: newJoke.id,
-  // });
+router.post('/', async (req, res, next) => {
+  try {
+    const joke = await Joke.create(req.body);
+    res.json(joke);
+  } catch (error) {
+    next(error);
+  }
 });
 
 /**
- * Exercise 4
  * Create a PATCH /joke/:id route, that updates the joke for the given id.
  */
 
-router.patch('/:id', (req, res, next) => {
-  // const { id } = req.params;
-  // const jokeIndex = jokes.findIndex(joke => joke.id === id);
-  // jokes[jokeIndex] = {
-  //   ...jokes[jokeIndex],
-  //   ...req.body,
-  //   id,
-  // };
-
-  // let joke = jokes.find((joke) => joke.id === id);
-  // joke = {
-  //   ...joke,
-  //   ...req.body,
-  //   id,
-  // };
-
-  // res.json({
-  //   updatedId: id,
-  // });
-  // console.log(jokeIndex);
+router.patch('/:id', async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const joke = await Joke.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    res.json(joke);
+  } catch (error) {
+    next(error);
+  }
 });
 
 /**
- * Exercise 5
  * Create a DELETE /joke/:id route, that deletes the joke for the given id.
  */
 
-router.delete('/:id', (req, res, next) => {
-  // const { id } = req.params;
-  // jokes = jokes.filter(joke => joke.id !== id);
-
-  // res.json({
-  //   deletedId: id,
-  // });
+router.delete('/:id', async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const deletedJoke = await Joke.findByIdAndDelete(id);
+    res.send(deletedJoke);
+  } catch (error) {
+    next(error);
+  }
 });
 
 export default router;

@@ -1,5 +1,6 @@
 import express from 'express';
 import jokes from './routes/jokes.js';
+import people from './routes/people.js';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
@@ -19,6 +20,10 @@ const port = 3333;
 app.use(express.json());
 
 app.use('/jokes', jokes);
+app.use('/people', people);
+app.use('*', (error, req, res, next) => {
+  res.json(error);
+});
 
 app.listen(port, () => {
   console.log(`👏 Listening on port ${port}`);
