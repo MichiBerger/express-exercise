@@ -3,8 +3,11 @@ import jokes from './routes/jokes.js';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
+dotenv.config();
+const { MONGODB_URL = 'mongodb://localhost:27017/jokes-app' } = process.env;
+
 try {
-  await mongoose.connect('mongodb://localhost:27017/jokes-app');
+  await mongoose.connect(MONGODB_URL);
   console.log('Connected to MongoDB.');
 } catch (error) {
   console.error('ERROR: could not connect.', error.message);
