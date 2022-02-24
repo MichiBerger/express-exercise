@@ -19,14 +19,14 @@ router.get('/', async (req, res, next) => {
  */
 
 router.get('/:id', (req, res, next) => {
-  const { id } = req.params;
-  const joke = jokes.find(joke => joke.id === id);
+  // const { id } = req.params;
+  // const joke = jokes.find(joke => joke.id === id);
 
-  if (joke) {
-    res.json(joke.joke);
-  } else {
-    next();
-  }
+  // if (joke) {
+  //   res.json(joke.joke);
+  // } else {
+  //   next();
+  // }
 });
 
 /**
@@ -34,13 +34,13 @@ router.get('/:id', (req, res, next) => {
  * Create a POST /joke route, that adds a new joke to the array.
  */
 router.post('/', (req, res, next) => {
-  const newJoke = req.body;
-  newJoke.id = nanoid();
-  jokes.push(newJoke);
+  // const newJoke = req.body;
+  // newJoke.id = nanoid();
+  // jokes.push(newJoke);
 
-  res.json({
-    insertedAt: newJoke.id,
-  });
+  // res.json({
+  //   insertedAt: newJoke.id,
+  // });
 });
 
 /**
@@ -49,13 +49,13 @@ router.post('/', (req, res, next) => {
  */
 
 router.patch('/:id', (req, res, next) => {
-  const { id } = req.params;
-  const jokeIndex = jokes.findIndex(joke => joke.id === id);
-  jokes[jokeIndex] = {
-    ...jokes[jokeIndex],
-    ...req.body,
-    id,
-  };
+  // const { id } = req.params;
+  // const jokeIndex = jokes.findIndex(joke => joke.id === id);
+  // jokes[jokeIndex] = {
+  //   ...jokes[jokeIndex],
+  //   ...req.body,
+  //   id,
+  // };
 
   // let joke = jokes.find((joke) => joke.id === id);
   // joke = {
@@ -64,10 +64,10 @@ router.patch('/:id', (req, res, next) => {
   //   id,
   // };
 
-  res.json({
-    updatedId: id,
-  });
-  console.log(jokeIndex);
+  // res.json({
+  //   updatedId: id,
+  // });
+  // console.log(jokeIndex);
 });
 
 /**
@@ -76,12 +76,12 @@ router.patch('/:id', (req, res, next) => {
  */
 
 router.delete('/:id', (req, res, next) => {
-  const { id } = req.params;
-  jokes = jokes.filter(joke => joke.id !== id);
+  // const { id } = req.params;
+  // jokes = jokes.filter(joke => joke.id !== id);
 
-  res.json({
-    deletedId: id,
-  });
+  // res.json({
+  //   deletedId: id,
+  // });
 });
 
 export default router;
